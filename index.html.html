@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brújula Capitalina · ¿Cómo ves tu ciudad?</title>
+<meta name="description" content="Quince escenas de la vida diaria en la Ciudad de México para descubrir hacia dónde se inclina tu mirada política en tres dimensiones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff7ec; --card:#ffffff; --ink:#2b2230; --muted:#6b5f73; --line:#eadfce;
+  --rosa:#d6246e; --rosa-dark:#a81a54; --turq:#0b7a75; --mostaza:#f2a900; --violeta:#5b3b8c;
+  --radius:18px; --shadow:0 10px 30px rgba(80,40,60,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;line-height:1.2;margin:0 0 .5em}
+a{color:var(--rosa-dark)}
+.papel{height:26px;background:repeating-linear-gradient(90deg,var(--rosa) 0 46px,var(--mostaza) 46px 92px,var(--turq) 92px 138px,var(--violeta) 138px 184px);
+  clip-path:polygon(0 0,100% 0,100% 55%,97% 100%,94% 55%,91% 100%,88% 55%,85% 100%,82% 55%,79% 100%,76% 55%,73% 100%,70% 55%,67% 100%,64% 55%,61% 100%,58% 55%,55% 100%,52% 55%,49% 100%,46% 55%,43% 100%,40% 55%,37% 100%,34% 55%,31% 100%,28% 55%,25% 100%,22% 55%,19% 100%,16% 55%,13% 100%,10% 55%,7% 100%,4% 55%,1% 100%,0 55%)}
+.wrap{max-width:900px;margin:0 auto;padding:24px 18px 60px}
+.screen{display:none;animation:fade .4s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;border:1px solid var(--line)}
+.btn{font:inherit;font-weight:600;border:0;border-radius:999px;padding:14px 28px;cursor:pointer;transition:.15s;font-size:1rem}
+.btn-primary{background:var(--rosa);color:#fff;box-shadow:0 6px 16px rgba(214,36,110,.3)}
+.btn-primary:hover{background:var(--rosa-dark);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--rosa);color:var(--rosa-dark)}
+.btn-sm{padding:8px 16px;font-size:0.85rem}
+.btn:focus-visible,.opt:focus-visible,a:focus-visible,.chip:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--turq);outline-offset:2px}
+
+/* Forms */
+.form-group{margin-bottom:18px;text-align:left}
+.form-group label{display:block;font-weight:600;margin-bottom:6px;font-size:0.95rem;color:var(--violeta)}
+.form-control{width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:12px;font:inherit;background:#fff;transition:.15s}
+.form-control:focus{border-color:var(--rosa);outline:none}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.consent-box{background:#fff;border:1px solid var(--line);padding:14px;border-radius:12px;margin-bottom:20px;display:flex;align-items:flex-start;gap:10px;text-align:left;font-size:0.88rem}
+.consent-box input{margin-top:4px}
+
+/* Inicio */
+.hero{text-align:center;padding:20px 10px 10px}
+.skyline{width:100%;max-width:600px;height:auto;margin:0 auto 6px;display:block}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);color:var(--violeta)}
+.hero p.lead{font-size:1.1rem;color:var(--muted);max-width:640px;margin:0 auto 1.2em}
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0 28px}
+.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:.9rem}
+.fine{font-size:.82rem;color:var(--muted);max-width:580px;margin:18px auto 0}
+
+/* Preguntas */
+.progress{height:10px;background:#f1e5d3;border-radius:99px;overflow:hidden;margin-bottom:8px}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--rosa),var(--mostaza));transition:width .35s}
+.count{font-size:.85rem;color:var(--muted);margin-bottom:18px;display:flex;justify-content:space-between}
+.scene{display:inline-flex;align-items:center;gap:8px;background:#fdf0f5;color:var(--rosa-dark);border-radius:999px;padding:6px 14px;font-weight:600;font-size:.85rem;margin-bottom:12px}
+.hint{font-size:.85rem;font-weight:500;color:var(--muted);margin:0 0 4px}
+.qtext{font-size:1.25rem;font-weight:500;margin:0 0 22px}
+.opts{display:grid;gap:10px}
+.opt{font:inherit;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;padding:14px 18px;cursor:pointer;transition:.15s;display:flex;gap:12px;align-items:center}
+.opt:hover{border-color:var(--rosa);background:#fff7fa}
+.opt .k{width:26px;height:26px;border-radius:50%;background:#f4e9d9;display:grid;place-items:center;font-size:.8rem;font-weight:600;flex:none}
+.opt.sel{border-color:var(--rosa);background:#fff0f6}
+.qnav{display:flex;justify-content:space-between;margin-top:22px}
+
+/* Resultado */
+.res-head{text-align:center;margin-bottom:20px}
+.badge{display:inline-block;color:#fff;font-weight:600;border-radius:999px;padding:6px 16px;font-size:.85rem;margin-bottom:10px}
+.res-head h2{font-size:clamp(1.7rem,5vw,2.4rem);color:var(--violeta)}
+.coords{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.coord{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-size:.88rem}
+.section{margin-top:30px}
+.section h3{font-size:1.4rem;color:var(--violeta)}
+.section>p.sub{font-size:.92rem;color:var(--muted);margin-top:-.2em}
+.compass-box{max-width:520px;margin:0 auto}
+.zbox{max-width:520px;margin:6px auto 0}
+svg text{font-family:'Poppins',sans-serif}
+.why li{margin-bottom:10px}
+.why .tag{display:inline-block;font-size:.75rem;font-weight:600;border-radius:6px;padding:1px 8px;background:#f4e9d9;margin-right:6px}
+.grid2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.ex{border:1px solid var(--line);border-top:6px solid var(--rosa);border-radius:12px;padding:14px 16px;background:#fff}
+.ex-top{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+.ex-top svg{flex:none;width:56px;height:56px}
+.ex h4{margin:0;font-size:1rem;line-height:1.3}
+.ex .yrs{font-size:.8rem;color:var(--muted)}
+.ex p{margin:0;font-size:.92rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.chip{font:inherit;font-size:.85rem;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;cursor:pointer}
+.chip.on{background:var(--violeta);color:#fff;border-color:var(--violeta)}
+.legend{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.legend li{font-size:.88rem;display:flex;gap:10px;align-items:flex-start}
+.legend .n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--violeta);color:#fff;font-size:.75rem;font-weight:600;display:grid;place-items:center}
+.legend .n.mx{background:var(--turq)}
+.note{background:#fff8e1;border:1px solid #f3dd9a;border-radius:12px;padding:14px 16px;font-size:.9rem}
+.cite{font-size:.8em;text-decoration:none;white-space:nowrap}
+.cite:hover{text-decoration:underline}
+.refs{padding-left:20px;font-size:.9rem}
+.refs li{margin-bottom:8px}
+.vids{list-style:none;padding:0;display:grid;gap:10px}
+.vids a{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;text-decoration:none;color:var(--ink)}
+.vids a:hover{border-color:var(--rosa)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+.pulse{animation:pulse 1.8s infinite;transform-origin:center;transform-box:fill-box}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+
+/* Dashboard & Admin */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
+.metric-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.metric-num{font-size:2rem;font-weight:700;color:var(--rosa-dark);line-height:1}
+.metric-lbl{font-size:0.85rem;color:var(--muted);margin-top:6px}
+.dash-quadrants{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,1fr);gap:18px;align-items:start}
+.dash-chart,.dash-ranking{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.dash-chart svg{display:block;width:100%;height:auto}
+.dash-chart-empty{min-height:220px;display:grid;place-items:center;text-align:center;color:var(--muted)}
+.dash-ranking h4{margin:0 0 12px;color:var(--violeta)}
+.quadrant-ranking{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.quadrant-ranking li{min-width:0}
+.quadrant-rank-head{display:flex;justify-content:space-between;gap:12px;font-size:.85rem}
+.quadrant-rank-head strong{color:var(--ink)}
+.quadrant-rank-head span{color:var(--muted);white-space:nowrap}
+.quadrant-track{height:10px;background:#f1e5d3;border-radius:99px;overflow:hidden;margin-top:6px}
+.quadrant-track span{display:block;height:100%;border-radius:inherit;transition:width .3s}
+.dash-chart-note{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.q-breakdown-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:16px}
+.q-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.q-card h5{margin:0 0 6px;font-size:0.92rem;color:var(--violeta)}
+.q-card p{margin:0 0 10px;font-size:0.85rem;color:var(--muted);line-height:1.3}
+.q-bars{display:grid;gap:6px}
+.q-bar-row{display:flex;align-items:center;gap:8px;font-size:0.75rem}
+.q-bar-label{width:110px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink)}
+.q-bar-track{flex:1;height:8px;background:#f1e5d3;border-radius:99px;overflow:hidden}
+.q-bar-fill{height:100%;background:var(--rosa);border-radius:99px;transition:width .3s}
+.q-bar-val{width:35px;flex:none;text-align:right;color:var(--muted);font-weight:600}
+.dash-table-wrap{overflow-x:auto;margin-top:16px}
+.dash-table{width:100%;border-collapse:collapse;font-size:0.85rem;text-align:left}
+.dash-table th,.dash-table td{padding:10px 12px;border-bottom:1px solid var(--line)}
+.dash-table th{background:#fdf0f5;color:var(--violeta);font-weight:600}
+
+footer{text-align:center;font-size:.8rem;color:var(--muted);margin-top:30px}
+
+/* Ejes ilustrados */
+.axgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.ax{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+.ax h4{margin:0 0 8px;font-size:1rem}
+.ax .pair{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-bottom:8px}
+.ax .side{text-align:center;font-size:.78rem;color:var(--muted);flex:1}
+.ax .side svg{width:54px;height:54px;color:var(--violeta);display:block;margin:0 auto 2px}
+.ax p{margin:0;font-size:.9rem}
+
+/* Línea del tiempo */
+.tl{display:flex;gap:12px;overflow-x:auto;padding:6px 2px 14px;scroll-snap-type:x proximity}
+.tl-item{flex:0 0 176px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;scroll-snap-align:start;text-align:center}
+.tl-item svg{width:56px;height:56px;color:var(--turq)}
+.tl-item .yr{font-weight:700;color:var(--rosa-dark);font-size:.85rem}
+.tl-item .nm{font-weight:600;font-size:.9rem;line-height:1.3}
+.tl-item .ph{font-size:.8rem;color:var(--muted);margin-top:4px}
+
+/* 3D */
+.rot{display:flex;align-items:center;gap:12px;max-width:520px;margin:6px auto 0;font-size:.85rem;color:var(--muted)}
+.rot input{flex:1}
+
+/* Glosario */
+.gloss{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.gloss div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.gloss dt{font-weight:600;color:var(--violeta);margin-bottom:2px}
+.gloss dd{margin:0;font-size:.9rem}
+dl.gloss{margin:0}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:520px){.card{padding:20px}.qtext{font-size:1.1rem}}
+@media (max-width:700px){.dash-quadrants{grid-template-columns:1fr}.dash-chart,.dash-ranking{padding:12px}}
+</style>
+</head>
+<body>
+<div class="papel" aria-hidden="true"></div>
+<main class="wrap">
+
+  <!-- INICIO -->
+  <section id="screen-intro" class="screen active">
+    <div class="card hero">
+      <svg class="skyline" viewBox="0 0 600 160" role="img" aria-label="Ilustración de la Ciudad de México con volcanes, la Torre Latinoamericana, una columna con una figura y una cúpula">
+        <rect x="0" y="0" width="600" height="160" fill="#fff7ec"/>
+        <circle cx="520" cy="34" r="18" fill="#f2a900" opacity=".85"/>
+        <polygon points="150,150 235,52 320,150" fill="#d9c6e8"/>
+        <polygon points="216,72 235,52 254,72 244,68 235,76 226,68" fill="#ffffff"/>
+        <polygon points="300,150 380,72 420,86 470,72 545,150" fill="#e6d3ee"/>
+        <polygon points="372,80 380,72 400,80 395,86 385,82" fill="#ffffff"/>
+        <rect x="40" y="100" width="30" height="50" fill="#8a6fb0"/>
+        <rect x="76" y="84" width="22" height="66" fill="#a58ac4"/>
+        <rect x="104" y="64" width="22" height="86" fill="#5b3b8c"/>
+        <rect x="109" y="48" width="12" height="16" fill="#5b3b8c"/>
+        <line x1="115" y1="22" x2="115" y2="48" stroke="#5b3b8c" stroke-width="2"/>
+        <rect x="132" y="96" width="34" height="54" fill="#8a6fb0"/>
+        <rect x="262" y="82" width="10" height="68" fill="#0b7a75"/>
+        <rect x="254" y="138" width="26" height="12" fill="#0b7a75"/>
+        <circle cx="267" cy="76" r="6" fill="#f2a900"/>
+        <path d="M262 76 l-8 -6 M272 76 l8 -6" stroke="#f2a900" stroke-width="3" stroke-linecap="round"/>
+        <rect x="400" y="112" width="96" height="38" fill="#d6246e"/>
+        <path d="M414 112 a34 30 0 0 1 68 0z" fill="#f2a900"/>
+        <line x1="448" y1="82" x2="448" y2="74" stroke="#a81a54" stroke-width="3"/>
+        <rect x="504" y="104" width="30" height="46" fill="#8a6fb0"/>
+        <rect x="540" y="118" width="40" height="32" fill="#a58ac4"/>
+        <rect x="0" y="148" width="600" height="12" fill="#5b3b8c"/>
+      </svg>
+      <h1>Brújula Capitalina</h1>
+      <p class="lead">¿Cómo ves tu ciudad? Quince escenas de la vida diaria en la Ciudad de México: el Metro, la renta, el Zócalo, el mercado. Sólo cuéntanos qué piensas.</p>
+      <div class="pills">
+        <span class="pill">⏱️ 4 minutos</span>
+        <span class="pill">🙈 Datos opcionales y protegidos</span>
+        <span class="pill">✅ No hay respuestas correctas</span>
+      </div>
+      <button class="btn btn-primary" id="btn-to-demo">Empezar</button>
+      <p class="fine">Al final verás un mapa con tu resultado, de dónde vienen esas ideas en la historia y material para seguir explorando.</p>
+      <div style="margin-top:20px;">
+        <button class="btn btn-ghost btn-sm" id="btn-to-login">Acceso Administrador / Métricas</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPTURA DEMOGRÁFICA Y CONSENTIMIENTO -->
+  <section id="screen-demo" class="screen">
+    <div class="card">
+      <h2 style="color:var(--violeta);text-align:center;">Registro Opcional de Perfil</h2>
+      <p style="text-align:center;color:var(--muted);font-size:0.95rem;margin-bottom:24px;">
+        Para ayudarnos a enriquecer las estadísticas del ejercicio, puedes proporcionarnos la siguiente información. No recabamos datos sensibles ni de identificación personal directa.
+      </p>
+
+      <div class="consent-box">
+        <input type="checkbox" id="demo-consent">
+        <label for="demo-consent">
+          <strong>Autorizo el uso de estos datos con fines estadísticos y agregados.</strong> Entiendo que mi participación es voluntaria y que no se almacena ningún dato de identificación personal confidencial.
+        </label>
+      </div>
+
+      <div id="demo-fields" style="opacity: 0.5; pointer-events: none; transition: opacity 0.3s;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f-alias">Alias o seudónimo:</label>
+            <input type="text" id="f-alias" class="form-control" placeholder="Ej. Capitalino24">
+          </div>
+          <div class="form-group">
+            <label for="f-genero">Género:</label>
+            <select id="f-genero" class="form-control">
+              <option value="">Selecciona...</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="No binario">No binario</option>
+              <option value="Otro">Otro</option>
+              <option value="Prefiero no decir">Prefiero no decir</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-sexo">Sexo asignado al nacer:</label>
+            <select id="f-sexo" class="form-control">
+              <option value="">Selecciona...</option>
+              <option value="Mujer">Mujer</option>
+              <option value="Hombre">Hombre</option>
+              <option value="Intersexual">Intersexual</option>
+              <option value="Prefiero no decir">Prefiero no decir</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-edad">Rango de edad:</label>
+            <select id="f-edad" class="form-control">
+              <option value="">Selecciona...</option>
+              <option value="18-24">18 a 24 años</option>
+              <option value="25-34">25 a 34 años</option>
+              <option value="35-49">35 a 49 años</option>
+              <option value="50-64">50 a 64 años</option>
+              <option value="65+">65 años o más</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-estudios">Nivel de estudios:</label>
+            <select id="f-estudios" class="form-control">
+              <option value="">Selecciona...</option>
+              <option value="Secundaria o menor">Secundaria o menor</option>
+              <option value="Preparatoria / Bachillerato">Preparatoria / Bachillerato</option>
+              <option value="Licenciatura / Técnica">Licenciatura / Técnica</option>
+              <option value="Posgrado">Posgrado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-alcaldia">Alcaldía (CDMX) o residencia:</label>
+            <select id="f-alcaldia" class="form-control">
+              <option value="">Selecciona...</option>
+              <option value="Álvaro Obregón">Álvaro Obregón</option>
+              <option value="Azcapotzalco">Azcapotzalco</option>
+              <option value="Benito Juárez">Benito Juárez</option>
+              <option value="Coyoacán">Coyoacán</option>
+              <option value="Cuajimalpa">Cuajimalpa</option>
+              <option value="Cuauhtémoc">Cuauhtémoc</option>
+              <option value="Gustavo A. Madero">Gustavo A. Madero</option>
+              <option value="Iztacalco">Iztacalco</option>
+              <option value="Iztapalapa">Iztapalapa</option>
+              <option value="Magdalena Contreras">Magdalena Contreras</option>
+              <option value="Miguel Hidalgo">Miguel Hidalgo</option>
+              <option value="Milpa Alta">Milpa Alta</option>
+              <option value="Tláhuac">Tláhuac</option>
+              <option value="Tlalpan">Tlalpan</option>
+              <option value="Venustiano Carranza">Venustiano Carranza</option>
+              <option value="Xochimilco">Xochimilco</option>
+              <option value="Estado de México / Otro">Estado de México / Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="f-espectro-propio">¿En qué espectro te consideras?</label>
+          <select id="f-espectro-propio" class="form-control">
+            <option value="">Selecciona...</option>
+            <option value="Izquierda">Izquierda</option>
+            <option value="Centro">Centro</option>
+            <option value="Derecha">Derecha</option>
+            <option value="Otra">Otra</option>
+            <option value="No sé">No sé</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="f-espectro-entorno">En tu entorno (familia, vecinos, trabajo), ¿crees que se inclinan más hacia un lado u otro?</label>
+          <select id="f-espectro-entorno" class="form-control">
+            <option value="">Selecciona...</option>
+            <option value="Hacia la izquierda">Hacia la izquierda</option>
+            <option value="Hacia el centro">Hacia el centro</option>
+            <option value="Hacia la derecha">Hacia la derecha</option>
+            <option value="Muy diverso / Variado">Muy diverso / Variado</option>
+            <option value="No sé">No sé</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="btn-start-quiz">Continuar al Test →</button>
+        <button class="btn btn-ghost" id="btn-skip-demo">Omitir e iniciar directamente</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREGUNTAS -->
+  <section id="screen-quiz" class="screen" aria-live="polite">
+    <div class="card">
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" id="pbar"><div id="pfill"></div></div>
+      <div class="count"><span id="pcount">Escena 1 de 15</span><span>Atajo: teclas 1 a 5</span></div>
+      <div class="scene" id="q-scene"></div>
+      <p class="hint">¿Qué tan de acuerdo estás con esta frase?</p>
+      <p class="qtext" id="q-text"></p>
+      <div class="opts" id="q-opts"></div>
+      <div class="qnav">
+        <button class="btn btn-ghost" id="btn-back">← Anterior</button>
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADO -->
+  <section id="screen-result" class="screen">
+    <div class="card">
+      <div class="res-head">
+        <span class="badge" id="r-badge"></span>
+        <h2 id="r-title"></h2>
+        <p id="r-sub" style="color:var(--muted);margin:0"></p>
+        <div class="coords" id="r-coords"></div>
+      </div>
+
+      <div class="section" style="margin-top:10px">
+        <h3>Tu posición en los tres ejes</h3>
+        <p class="sub">Arriba, el mapa de economía y autoridad. Abajo, tu tercer eje: protección de lo propio frente a apertura al exterior.</p>
+        <div class="compass-box" id="r-compass"></div>
+        <div class="zbox" id="r-zbar"></div>
+        <p style="text-align:center;font-size:.85rem;color:var(--muted)">El punto rosa eres tú. Cada eje va de −10 a +10.</p>
+      </div>
+
+      <div class="section">
+        <h3>Cómo leer los tres ejes</h3>
+        <div class="axgrid" id="r-axes"></div>
+      </div>
+
+      <div class="section">
+        <h3>¿Por qué caes aquí?</h3>
+        <div id="r-why"></div>
+      </div>
+
+      <div class="section">
+        <h3 id="r-idea-title">De dónde viene esta forma de pensar</h3>
+        <div id="r-idea"></div>
+      </div>
+
+      <div class="section">
+        <h3>Ejemplos históricos cercanos a tu posición</h3>
+        <div class="grid2" id="r-examples"></div>
+      </div>
+
+      <div class="section">
+        <h3>Línea del tiempo ilustrada de México</h3>
+        <p class="sub">Ocho momentos de la historia mexicana que ayudan a entender los tres ejes. Desliza para recorrerla.</p>
+        <div class="tl" id="r-timeline" tabindex="0" aria-label="Línea del tiempo, desplazable"></div>
+      </div>
+
+      <div class="section">
+        <h3>Mapa histórico: ¿dónde estarían otros momentos y pensadores?</h3>
+        <p class="sub">Ubicaciones aproximadas e interpretativas, hechas para comparar ideas, no para etiquetar personas. Cada punto numerado tiene su fuente en la lista.</p>
+        <div class="chips" id="r-filters">
+          <button class="chip on" data-f="all">Todos</button>
+          <button class="chip" data-f="mx">México</button>
+          <button class="chip" data-f="world">Mundo</button>
+        </div>
+        <div class="compass-box" id="r-hist"></div>
+        <div class="zbox" id="r-histz"></div>
+        <h4 style="text-align:center;margin:18px 0 0">Vista en tres dimensiones</h4>
+        <p class="sub" style="text-align:center">Mueve el control para girar el cubo.</p>
+        <div class="compass-box" id="r-3d"></div>
+        <div class="rot"><label for="rot">Girar</label><input type="range" id="rot" min="0" max="360" value="35" aria-label="Girar la vista tridimensional"><span id="rotv">35°</span></div>
+        <ul class="legend" id="r-legend"></ul>
+      </div>
+
+      <div class="section">
+        <h3>Conceptos en palabras sencillas</h3>
+        <dl class="gloss" id="r-gloss"></dl>
+      </div>
+
+      <div class="section">
+        <h3>Por qué tres ejes y no dos</h3>
+        <div id="r-why3"></div>
+      </div>
+
+      <div class="section">
+        <h3>Matices y límites de este test</h3>
+        <div class="note" id="r-limits"></div>
+      </div>
+
+      <div class="section">
+        <h3>Cómo se calculó</h3>
+        <p id="r-method" style="font-size:.92rem"></p>
+      </div>
+
+      <div class="section">
+        <h3>Para seguir explorando: videos</h3>
+        <p class="sub">Son búsquedas en YouTube con términos sugeridos, porque las direcciones de los videos cambian con frecuencia. Revisa siempre quién publica y en qué fuentes se apoya.</p>
+        <ul class="vids" id="r-videos"></ul>
+      </div>
+
+      <div class="section">
+        <h3>Bibliografía y fuentes citadas</h3>
+        <ol class="refs" id="r-refs"></ol>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="btn-copy">Copiar mi resultado</button>
+        <button class="btn btn-ghost" id="btn-restart">Hacer el test otra vez</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGIN ADMINISTRADOR -->
+  <section id="screen-login" class="screen">
+    <div class="card" style="max-width:400px;margin:0 auto;">
+      <h2 style="color:var(--violeta);text-align:center;">Acceso Administrador</h2>
+      <p style="text-align:center;color:var(--muted);font-size:0.9rem;">Ingresa tus credenciales para acceder al panel de métricas.</p>
+
+      <form id="form-login">
+        <div class="form-group">
+          <label for="admin-user">Usuario:</label>
+          <input type="text" id="admin-user" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="admin-pass">Contraseña:</label>
+          <input type="password" id="admin-pass" class="form-control" required>
+        </div>
+        <div id="login-error" style="color:red;font-size:0.85rem;display:none;margin-bottom:12px;text-align:center;">Credenciales incorrectas.</div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Entrar</button>
+      </form>
+      <div style="text-align:center;margin-top:16px;">
+        <button class="btn btn-ghost btn-sm" id="btn-login-cancel">Volver al inicio</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD DE MÉTRICAS Y DATOS -->
+  <section id="screen-dashboard" class="screen">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+        <h2>Dashboard de Métricas y Datos</h2>
+        <button class="btn btn-ghost btn-sm" id="btn-logout">Cerrar Sesión</button>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-num" id="dash-total-resp">0</div>
+          <div class="metric-lbl">Respuestas Totales</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="dash-pct-autorizados">0%</div>
+          <div class="metric-lbl">Datos Autorizados</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="dash-top-alcaldia">-</div>
+          <div class="metric-lbl">Alcaldía Principal</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="dash-top-espectro">-</div>
+          <div class="metric-lbl">Espectro Percibido Frecuente</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>¿En qué cuadrantes se concentra la gente?</h3>
+        <p class="sub">Distribución general de los resultados del test. El mapa visualiza la densidad por cuadrante y el listado los ordena por volumen.</p>
+        <div class="dash-quadrants">
+          <div class="dash-chart" id="dash-quadrant-chart" aria-live="polite"></div>
+          <div class="dash-ranking">
+            <h4>Resultados por cuadrante</h4>
+            <ol class="quadrant-ranking" id="dash-quadrant-list"></ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Distribución detallada por cada pregunta</h3>
+        <p class="sub">Porcentaje de respuestas otorgadas a cada opción en las 15 escenas del test.</p>
+        <div class="q-breakdown-grid" id="dash-questions-breakdown"></div>
+      </div>
+
+      <div class="section">
+        <h3>Registros Recabados en Tiempo Real</h3>
+        <p class="sub">Lista de respuestas almacenadas. Los campos demográficos se muestran como "-" si el usuario decidió no autorizarlos.</p>
+        
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Alias</th>
+                <th>Género / Sexo</th>
+                <th>Edad</th>
+                <th>Estudios</th>
+                <th>Alcaldía</th>
+                <th>Espectro Propio</th>
+                <th>Espectro Entorno</th>
+                <th>Resultado Test</th>
+              </tr>
+            </thead>
+            <tbody id="dash-table-body">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-ghost" id="btn-dash-back">Volver al Inicio</button>
+        <button class="btn btn-primary" id="btn-clear-data" style="background:#a81a54;">Limpiar Datos Locales</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>Brújula Capitalina · Herramienta educativa de reflexión, no un instrumento psicométrico validado.</footer>
+</main>
+
+<script>
+(function(){
+"use strict";
+
+/* ===================== REFERENCIAS ===================== */
+var REFS = {
+  bobbio:{short:"Bobbio, 1994",full:"Bobbio, N. (1994). Derecha e izquierda: razones y significados de una distinción política. Madrid: Taurus (ed. en español, 1995).",q:"Bobbio Derecha e izquierda"},
+  eysenck:{short:"Eysenck, 1954",full:"Eysenck, H. J. (1954). The Psychology of Politics. Londres: Routledge & Kegan Paul.",q:"Eysenck The Psychology of Politics 1954"},
+  nolan:{short:"Nolan, 1971",full:"Nolan, D. (1971). «Classifying and Analyzing Politico-Economic Systems». The Individualist.",q:"David Nolan Nolan Chart 1971 The Individualist"},
+  pcompass:{short:"The Political Compass",full:"The Political Compass. «About the Political Compass». politicalcompass.org (modelo de dos ejes, económico y social).",url:"https://www.politicalcompass.org/"},
+  hooghe:{short:"Hooghe, Marks y Wilson, 2002",full:"Hooghe, L., Marks, G. y Wilson, C. J. (2002). «Does Left/Right Structure Party Positions on European Integration?». Comparative Political Studies, 35(8).",q:"Hooghe Marks Wilson 2002 Does Left/Right Structure Party Positions on European Integration"},
+  inglehart:{short:"Inglehart y Welzel, 2005",full:"Inglehart, R. y Welzel, C. (2005). Modernization, Cultural Change, and Democracy. Cambridge: Cambridge University Press.",q:"Inglehart Welzel Modernization Cultural Change and Democracy"},
+  marx:{short:"Marx y Engels, 1848",full:"Marx, K. y Engels, F. (1848). Manifiesto del Partido Comunista.",q:"Marx Engels Manifiesto del Partido Comunista"},
+  hayek:{short:"Hayek, 1944",full:"Hayek, F. A. (1944). Camino de servidumbre. (The Road to Serfdom).",q:"Hayek Camino de servidumbre"},
+  friedman:{short:"Friedman, 1962",full:"Friedman, M. (1962). Capitalismo y libertad. Chicago: University of Chicago Press.",q:"Milton Friedman Capitalismo y libertad"},
+  arendt:{short:"Arendt, 1951",full:"Arendt, H. (1951). Los orígenes del totalitarismo.",q:"Hannah Arendt Los orígenes del totalitarismo"},
+  rawls:{short:"Rawls, 1971",full:"Rawls, J. (1971). Teoría de la justicia. Cambridge, MA: Harvard University Press.",q:"John Rawls Teoría de la justicia"},
+  nozick:{short:"Nozick, 1974",full:"Nozick, R. (1974). Anarquía, Estado y utopía. Nueva York: Basic Books.",q:"Robert Nozick Anarquía Estado y utopía"},
+  aguilar:{short:"Aguilar Camín y Meyer, 1989",full:"Aguilar Camín, H. y Meyer, L. (1989). A la sombra de la Revolución Mexicana. México: Cal y Arena.",q:"A la sombra de la Revolución Mexicana Aguilar Camín Meyer"},
+  krauze:{short:"Krauze, 1997",full:"Krauze, E. (1997). La presidencia imperial: ascenso y caída del sistema político mexicano (1940–1996). México: Tusquets.",q:"Krauze La presidencia imperial"},
+  cosio:{short:"Cosío Villegas, 1972",full:"Cosío Villegas, D. (1972). El sistema político mexicano: las posibilidades de cambio. México: Joaquín Mortiz.",q:"Cosío Villegas El sistema político mexicano"},
+  meyer:{short:"Meyer, 1995",full:"Meyer, L. (1995). Liberalismo autoritario: las contradicciones del sistema político mexicano. México: Océano.",q:"Lorenzo Meyer Liberalismo autoritario"},
+  knight:{short:"Knight, 1986",full:"Knight, A. (1986). The Mexican Revolution (2 vols.). Cambridge: Cambridge University Press.",q:"Alan Knight The Mexican Revolution"},
+  womack:{short:"Womack, 1969",full:"Womack, J. (1969). Zapata y la Revolución mexicana. México: Siglo XXI.",q:"John Womack Zapata y la Revolución mexicana"},
+  hart:{short:"Hart, 1978",full:"Hart, J. M. (1978). Anarchism and the Mexican Working Class, 1860–1931. Austin: University of Texas Press.",q:"John Mason Hart Anarchism and the Mexican Working Class"},
+  hale:{short:"Hale, 1989",full:"Hale, C. A. (1989). The Transformation of Liberalism in Late Nineteenth-Century Mexico. Princeton: Princeton University Press.",q:"Charles Hale Transformation of Liberalism Mexico"},
+  loaeza:{short:"Loaeza, 1999",full:"Loaeza, S. (1999). El Partido Acción Nacional: la larga marcha, 1939–1994. México: Fondo de Cultura Económica.",q:"Soledad Loaeza El Partido Acción Nacional la larga marcha"},
+  cordova:{short:"Córdova, 1974",full:"Córdova, A. (1974). La política de masas del cardenismo. México: Era.",q:"Arnaldo Córdova La política de masas del cardenismo"},
+  gilly:{short:"Gilly, 1994",full:"Gilly, A. (1994). El cardenismo, una utopía mexicana. México: Cal y Arena.",q:"Adolfo Gilly El cardenismo una utopía mexicana"},
+  lebot:{short:"Le Bot, 1997",full:"Le Bot, Y. (1997). El sueño zapatista. México: Plaza & Janés.",q:"Yvon Le Bot El sueño zapatista"},
+  lustig:{short:"Lustig, 1992",full:"Lustig, N. (1992). Mexico: The Remaking of an Economy. Washington, D.C.: Brookings Institution.",q:"Nora Lustig Mexico The Remaking of an Economy"},
+  paz:{short:"Paz, 1950",full:"Paz, O. (1950). El laberinto de la soledad. México: Fondo de Cultura Económica. (Lectura complementaria sobre identidad mexicana.)",q:"Octavio Paz El laberinto de la soledad"},
+  poniatowska:{short:"Poniatowska, 1971",full:"Poniatowska, E. (1971). La noche de Tlatelolco. México: Era. (Lectura complementaria sobre 1968 en la CDMX.)",q:"Elena Poniatowska La noche de Tlatelolco"},
+  bartra:{short:"Bartra, 1987",full:"Bartra, R. (1987). La jaula de la melancolía: identidad y metamorfosis del mexicano. México: Grijalbo. (Lectura complementaria.)",q:"Roger Bartra La jaula de la melancolía"}
+};
+function cite(k){var r=REFS[k];return '<a class="cite" href="#ref-'+k+'" title="'+r.full.replace(/"/g,'&quot;')+'">['+r.short+']</a>';}
+function cites(arr){return arr.map(cite).join(' ');}
+
+/* ===================== ILUSTRACIONES (SVG originales) ===================== */
+var ICON_PATHS = {
+  train:'<rect x="10" y="26" width="34" height="18" rx="3"/><rect x="44" y="32" width="10" height="12" rx="2"/><rect x="16" y="18" width="8" height="8"/><circle cx="20" cy="12" r="3"/><circle cx="18" cy="48" r="4"/><circle cx="32" cy="48" r="4"/><circle cx="48" cy="48" r="4"/><path d="M6 56h52"/>',
+  oil:'<path d="M32 12L18 52M32 12L46 52M24 30H40M20 42H44M14 52H50"/><path d="M26 30L40 42M38 30L24 42"/><path d="M52 8c-3 4-5 7-5 10a5 5 0 0 0 10 0c0-3-2-6-5-10z"/>',
+  corn:'<path d="M32 58V30"/><ellipse cx="32" cy="20" rx="8" ry="14"/><path d="M32 8v24M26 14h12M25 20h14M26 26h12"/><path d="M32 46c-8 0-14-4-16-12 8 0 14 4 16 12zM32 40c8 0 14-4 16-12-8 0-14 4-16 12z"/>',
+  press:'<rect x="10" y="12" width="44" height="40" rx="3"/><path d="M16 22h32M16 30h14M16 36h14M16 42h14"/><rect x="36" y="30" width="12" height="14"/>',
+  columns:'<path d="M8 22L32 8l24 14z"/><path d="M14 26v22M26 26v22M38 26v22M50 26v22M8 52h48M10 58h44"/>',
+  pyramid:'<path d="M32 8L56 52H8z"/><path d="M22 30h20M15 42h34"/><circle cx="32" cy="22" r="3"/>',
+  ship:'<path d="M8 40h48l-6 12H14z"/><rect x="14" y="28" width="10" height="10"/><rect x="24" y="28" width="10" height="10"/><rect x="34" y="28" width="10" height="10"/><rect x="19" y="18" width="10" height="10"/><path d="M4 58q5-4 10 0t10 0t10 0t10 0t10 0t10 0"/>',
+  caracol:'<path d="M32 34c0-3 3-4 5-3s3 5 0 8-9 3-12-1-2-12 5-15 16-1 19 8 0 17-10 20"/><path d="M12 54h40"/>',
+  factory:'<path d="M8 52V30l14 8V30l14 8V30l14 8V12h8v40z"/><path d="M8 52h48"/>',
+  market:'<path d="M8 24q4 8 8 0q4 8 8 0q4 8 8 0q4 8 8 0q4 8 8 0q4 8 8 0"/><path d="M8 24L12 10H52L56 24"/><path d="M12 34v22M52 34v22M10 40h44"/><circle cx="24" cy="49" r="5"/><circle cx="38" cy="49" r="5"/>',
+  scale:'<path d="M32 10v40M20 54h24M14 20h36"/><path d="M14 20l-8 16h16zM50 20l-8 16h16z"/><path d="M6 36a8 4 0 0 0 16 0M42 36a8 4 0 0 0 16 0"/>',
+  person:'<circle cx="32" cy="32" r="24" stroke-dasharray="4 4"/><circle cx="32" cy="24" r="6"/><path d="M20 46c2-8 8-10 12-10s10 2 12 10"/>',
+  shield:'<path d="M32 8l20 8v14c0 12-8 20-20 26C20 50 12 42 12 30V16z"/>',
+  plane:'<path d="M8 32L56 10 40 54 30 38z"/><path d="M30 38L56 10"/>',
+  house:'<path d="M10 30L32 12l22 18"/><path d="M16 28v24h32V28"/><path d="M28 52V40h8v12"/>',
+  globe:'<circle cx="32" cy="32" r="20"/><path d="M12 32h40M32 12c-8 8-8 32 0 40M32 12c8 8 8 32 0 40"/>'
+};
+function icon(name,size){
+  var s=size||56;
+  return '<svg viewBox="0 0 64 64" width="'+s+'" height="'+s+'" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">'+(ICON_PATHS[name]||"")+'</svg>';
+}
+
+/* ===================== PREGUNTAS ===================== */
+var Q = [
+ {axis:"x",dir:-1,emoji:"🚇",scene:"En el Metro",
+  text:"El boleto del Metro debería seguir siendo muy barato, aunque para ello se necesiten más impuestos.",
+  topic:"mantener el boleto del Metro muy barato con dinero de impuestos",
+  whyAgree:"ve el transporte como un servicio que todos deben poder pagar y que se sostiene entre todos con impuestos. Esa idea de repartir costos para reducir desigualdades es la base de lo que se llama izquierda económica",
+  whyDisagree:"prefiere que quienes usan el servicio paguen una parte mayor de su costo y que no suban los impuestos. Es una idea cercana a lo que se llama derecha económica",
+  refs:["bobbio"]},
+ {axis:"y",dir:1,emoji:"🛡️",scene:"En la colonia",
+  text:"Para combatir la inseguridad, es aceptable que el Ejército patrulle las calles de la ciudad, aunque eso limite algunos derechos.",
+  topic:"que el Ejército patrulle las calles aunque se limiten algunos derechos",
+  whyAgree:"da prioridad a la seguridad y al orden, incluso si eso limita algunas libertades. Los modelos de dos ejes llaman a esta inclinación «autoritaria», sin que eso signifique dictadura",
+  whyDisagree:"sostiene que los derechos individuales no deben recortarse y que la seguridad debe estar en manos civiles. Los modelos de dos ejes llaman a esta inclinación «libertaria»",
+  refs:["eysenck","pcompass"]},
+ {axis:"z",dir:1,emoji:"⛽",scene:"En las noticias",
+  text:"El petróleo y la electricidad deben seguir bajo control del Estado, aunque eso reduzca la inversión de empresas extranjeras.",
+  topic:"mantener el petróleo y la electricidad bajo control del Estado aunque se reduzca la inversión extranjera",
+  whyAgree:"ve los recursos estratégicos como parte de la soberanía del país, una idea con raíz en la expropiación petrolera de 1938",
+  whyDisagree:"cree que abrirse a la inversión de otros países trae capital y tecnología que México necesita",
+  refs:["cordova","gilly"]},
+ {axis:"x",dir:1,emoji:"🚰",scene:"En casa",
+  text:"Las empresas privadas administrarían mejor que el gobierno servicios como el agua y la recolección de basura.",
+  topic:"que empresas privadas administren el agua y la recolección de basura",
+  whyAgree:"confía en que la competencia entre empresas mejora precios y calidad, un argumento central de Hayek y Friedman",
+  whyDisagree:"considera que el agua o la basura son derechos de todos y no deberían depender de que alguien obtenga ganancia",
+  refs:["friedman","hayek"]},
+ {axis:"y",dir:-1,emoji:"📢",scene:"En Reforma y el Zócalo",
+  text:"Las marchas y los plantones son un derecho que debe respetarse, aunque bloqueen avenidas como Reforma o el Zócalo.",
+  topic:"respetar marchas y plantones aunque bloqueen avenidas",
+  whyAgree:"protege las libertades de reunión y de expresión incluso cuando causan molestias, un valor de la inclinación libertaria",
+  whyDisagree:"da más peso al orden público y a la circulación normal de la ciudad, un valor de la inclinación autoritaria",
+  refs:["pcompass"]},
+ {axis:"z",dir:-1,emoji:"🚢",scene:"En el comercio",
+  text:"En general, el T-MEC y otros tratados de libre comercio han sido buenos para México.",
+  topic:"que el T-MEC y otros tratados de libre comercio son buenos para México",
+  whyAgree:"ve el comercio con otros países como una oportunidad para crecer, una postura de apertura",
+  whyDisagree:"teme que los tratados dañen a productores y trabajadores locales, una postura de protección de lo propio",
+  refs:["lustig"]},
+ {axis:"x",dir:-1,emoji:"💵",scene:"En el trabajo",
+  text:"El gobierno debería aumentar de forma importante el salario mínimo, aunque algunos negocios pequeños tengan dificultades para pagarlo.",
+  topic:"aumentar de forma importante el salario mínimo por decisión del gobierno",
+  whyAgree:"considera que el gobierno puede y debe corregir que los salarios sean muy bajos, aun con costos para algunos negocios",
+  whyDisagree:"cree que el mercado fija mejor los salarios y teme que un aumento fuerte reduzca empleos o cierre negocios pequeños",
+  refs:["bobbio","friedman"]},
+ {axis:"y",dir:-1,emoji:"🔐",scene:"En tu vida privada",
+  text:"Las decisiones sobre la vida privada de los adultos, como con quién casarse o si consumir cannabis, deben tomarlas ellos y no el Estado.",
+  topic:"que los adultos decidan sobre su vida privada (con quién casarse, consumir cannabis) sin intervención del Estado",
+  whyAgree:"defiende que cada persona decida sobre su vida privada sin intervención del Estado, idea central de la inclinación libertaria",
+  whyDisagree:"considera que el Estado o la comunidad pueden fijar límites morales a la conducta privada, rasgo de la inclinación autoritaria",
+  refs:["pcompass","eysenck"]},
+ {axis:"z",dir:1,emoji:"🛒",scene:"En el mercado",
+  text:"Conviene comprar productos hechos en México, aunque cuesten más que los importados.",
+  topic:"preferir productos hechos en México aunque cuesten más",
+  whyAgree:"da prioridad a la producción nacional aun pagando más, una postura de protección de lo propio",
+  whyDisagree:"prefiere elegir según precio y calidad sin importar el país de origen, una postura de apertura",
+  refs:["lustig"]},
+ {axis:"x",dir:-1,emoji:"🏠",scene:"En la Roma y la Condesa",
+  text:"El gobierno debería poner un límite a cuánto pueden subir las rentas en colonias como la Roma o la Condesa.",
+  topic:"poner un límite a los aumentos de renta",
+  whyAgree:"antepone el derecho a tener vivienda y la estabilidad de los vecinos sobre la libre fijación de precios",
+  whyDisagree:"sostiene que los precios los fijan la oferta y la demanda, y que los topes desincentivan construir y rentar",
+  refs:["bobbio","friedman"]},
+ {axis:"y",dir:1,emoji:"🏛️",scene:"En la política",
+  text:"Es preferible que el gobierno pueda decidir rápido, aunque otras instituciones (como jueces u organismos autónomos) tengan menos poder para frenarlo.",
+  topic:"que el gobierno decida rápido aunque otras instituciones tengan menos poder para frenarlo",
+  whyAgree:"concentra el poder para ganar rapidez en las decisiones, una lógica cercana al presidencialismo fuerte que Cosío Villegas y Krauze describen en la historia de México",
+  whyDisagree:"confía en límites y contrapesos al poder (división de poderes, organismos autónomos), tradición del constitucionalismo liberal",
+  refs:["cosio","krauze"]},
+ {axis:"z",dir:-1,emoji:"🌎",scene:"En tu colonia",
+  text:"La Ciudad de México debe facilitar que personas de otros países vengan a vivir o a trabajar aquí.",
+  topic:"facilitar que personas de otros países vivan o trabajen en la ciudad",
+  whyAgree:"ve la llegada de personas del exterior como algo positivo para la ciudad, una postura de apertura",
+  whyDisagree:"prefiere poner límites o condiciones a la llegada de personas del exterior, una postura de protección de lo propio",
+  refs:["inglehart"]},
+ {axis:"x",dir:1,emoji:"🏪",scene:"En el negocio de la esquina",
+  text:"El gobierno debería cobrar menos impuestos a las empresas para que generen más empleo, aunque recaude menos dinero.",
+  topic:"cobrar menos impuestos a las empresas para generar más empleo",
+  whyAgree:"cree que las empresas crean más empleo cuando pagan menos impuestos, una idea de la derecha económica",
+  whyDisagree:"teme que con menos impuestos el gobierno no pueda financiar servicios, y que las empresas ganen a costa de los trabajadores",
+  refs:["friedman","bobbio"]},
+ {axis:"y",dir:1,emoji:"📹",scene:"En la calle",
+  text:"Vale la pena instalar cámaras de vigilancia con reconocimiento facial en la ciudad, aunque se pierda algo de privacidad.",
+  topic:"instalar cámaras con reconocimiento facial aunque se pierda privacidad",
+  whyAgree:"acepta más vigilancia del Estado a cambio de seguridad, rasgo de la inclinación autoritaria",
+  whyDisagree:"pone la privacidad y los límites al poder de vigilancia por encima de la seguridad que prometen estas herramientas, rasgo de la inclinación libertaria",
+  refs:["pcompass"]},
+ {axis:"z",dir:1,emoji:"📰",scene:"En el mundo",
+  text:"México debe tomar sus propias decisiones, aunque organismos internacionales (como la ONU o el FMI) recomienden otra cosa.",
+  topic:"tomar decisiones propias aunque organismos internacionales recomienden otra cosa",
+  whyAgree:"pone la decisión propia por encima de la opinión externa, es decir, la soberanía",
+  whyDisagree:"considera que escuchar a organismos y a otros países ayuda a corregir errores y a cooperar",
+  refs:["hooghe"]}
+];
+var OPTS = [
+  {v:2,t:"Totalmente de acuerdo"},
+  {v:1,t:"De acuerdo"},
+  {v:0,t:"No sé / depende"},
+  {v:-1,t:"En desacuerdo"},
+  {v:-2,t:"Totalmente en desacuerdo"}
+];
+
+/* ===================== CUADRANTES ===================== */
+var QUADS = {
+ tl:{name:"Estado fuerte e igualdad",tech:"Izquierda autoritaria",color:"#d64545",
+  idea:"Combina dos convicciones: que el Estado debe corregir las desigualdades y planear buena parte de la economía, y que para lograrlo hacen falta orden, disciplina y una autoridad central fuerte. "+cite('arendt')+" "+cite('marx'),
+  ex:["urss","cardenismo","pri"]},
+ tr:{name:"Orden y mercado",tech:"Derecha autoritaria",color:"#2f6fd6",
+  idea:"Defiende la propiedad privada y el mercado, y también valora la autoridad, la tradición y el orden como condiciones de la estabilidad y del progreso. "+cite('knight')+" "+cite('loaeza'),
+  ex:["porfiriato","apertura","pri"]},
+ bl:{name:"Comunidad y libertades",tech:"Izquierda libertaria",color:"#2e9e5b",
+  idea:"Busca igualdad y formas de propiedad comunal o cooperativa, pero desconfía de la concentración de poder. "+cite('womack')+" "+cite('rawls'),
+  ex:["magon","zapata","ezln","rawls"]},
+ br:{name:"Libertad individual y mercado",tech:"Derecha libertaria (liberalismo clásico)",color:"#c98a00",
+  idea:"Pone la libertad individual, la propiedad privada y el mercado en el centro, y quiere un Estado pequeño. "+cite('hayek')+" "+cite('friedman'),
+  ex:["reforma","hayek","nozick"]},
+ c:{name:"Posición cercana al centro",tech:"Centro / posición mixta",color:"#5b3b8c",
+  idea:"Tus respuestas mezclan posturas de distintos lados o se mantienen en el término medio. "+cite('eysenck')+" "+cite('krauze'),
+  ex:["pri","rawls","reforma"]}
+};
+
+var ZQ = {
+ pos:{name:"Protección de lo propio",tech:"Soberanismo",idea:"Prioriza que las decisiones y los recursos clave queden en manos del país. "+cite('cordova')},
+ neg:{name:"Apertura al exterior",tech:"Aperturismo",idea:"Ve en el comercio y la inversión con otros países una fuente de crecimiento. "+cite('lustig')},
+ c:{name:"Equilibrio entre apertura y protección",tech:"Posición intermedia",idea:"Combinas apertura y protección según el tema. "+cite('hooghe')}
+};
+
+/* ===================== MAPA HISTÓRICO ===================== */
+var HIST = {
+ reforma:{n:"Reforma liberal (Juárez)",y:"1855–1872",x:4,yy:-2,z:0,s:"mx",ic:"columns",k:"Leyes que separaron a la Iglesia del Estado",t:"Leyes que garantizan libertades individuales.",refs:["hale"]},
+ porfiriato:{n:"Porfiriato",y:"1876–1911",x:5,yy:7,z:-7,s:"mx",ic:"train",k:"Trenes e inversión extranjera",t:"Infraestructura con poder autoritario.",refs:["knight"]},
+ magon:{n:"Flores Magón y el PLM",y:"1900–1922",x:-8,yy:-8,z:-3,s:"mx",ic:"press",k:"Anarquismo y Regeneración",t:"Crítica al capital y al gobierno.",refs:["hart"]},
+ zapata:{n:"Zapata y Plan de Ayala",y:"1911–1919",x:-6,yy:-5,z:2,s:"mx",ic:"corn",k:"Tierra para los pueblos",t:"Agrarismo y autonomía.",refs:["womack"]},
+ cardenismo:{n:"Cardenismo",y:"1934–1940",x:-6,yy:3,z:8,s:"mx",ic:"oil",k:"Expropiación petrolera",t:"Reparto agrario y soberanía.",refs:["cordova"]},
+ pri:{n:"Sistema priista clásico",y:"c. 1946–1970s",x:0,yy:6,z:5,s:"mx",ic:"pyramid",k:"Presidencialismo fuerte",t:"Economía mixta e instituciones.",refs:["cosio"]},
+ apertura:{n:"Apertura económica",y:"1988–1994",x:6,yy:3,z:-8,s:"mx",ic:"ship",k:"TLCAN y privatización",t:"Reformas de mercado.",refs:["lustig"]},
+ ezln:{n:"EZLN y zapatismo",y:"1994–",x:-7,yy:-6,z:4,s:"mx",ic:"caracol",k:"Levantamiento indígena",t:"Autonomía y crítica global.",refs:["lebot"]},
+ urss:{n:"URSS estalinista",y:"c. 1928–1953",x:-8,yy:9,z:7,s:"world",ic:"factory",k:"Economía planeada",t:"Control estatal.",refs:["arendt"]},
+ hayek:{n:"Liberalismo de mercado",y:"1944–1980s",x:8,yy:-5,z:-8,s:"world",ic:"market",k:"Mercado libre",t:"Iniciativa privada.",refs:["hayek"]},
+ rawls:{n:"Liberalismo igualitario",y:"1971",x:-3,yy:-5,z:-2,s:"world",ic:"scale",k:"Justicia e igualdad",t:"Derechos y redistribución.",refs:["rawls"]},
+ nozick:{n:"Libertarismo",y:"1974",x:9,yy:-9,z:-6,s:"world",ic:"person",k:"Estado mínimo",t:"Libertad individual.",refs:["nozick"]}
+};
+var HIST_ORDER=["reforma","porfiriato","magon","zapata","cardenismo","pri","apertura","ezln","urss","hayek","rawls","nozick"];
+var MX_ORDER=["reforma","porfiriato","magon","zapata","cardenismo","pri","apertura","ezln"];
+
+var GLOSS = [
+ {t:"Izquierda económica",d:"Busca reducir desigualdades mediante intervención estatal."},
+ {t:"Derecha económica",d:"Confía en el libre mercado y la propiedad privada."},
+ {t:"Autoritario",d:"Privilegia el orden, la seguridad y la autoridad central."},
+ {t:"Libertario",d:"Privilegia las libertades individuales sobre la autoridad estatal."}
+];
+
+var VIDEOS = [
+ {e:"🧭",t:"Qué es el espectro político",q:"espectro político explicado"},
+ {e:"📜",t:"Historia política de México",q:"historia política de México documental"}
+];
+
+/* ===================== ALMACENAMIENTO SOBERANO (SIN DATOS FALSOS) ===================== */
+var PROVISIONAL_DATA = [];
+
+function initDataStorage(){
+  if(!localStorage.getItem("brujula_records")){
+    localStorage.setItem("brujula_records", JSON.stringify(PROVISIONAL_DATA));
+  }
+}
+function getStoredRecords(){
+  initDataStorage();
+  try {
+    return JSON.parse(localStorage.getItem("brujula_records")) || [];
+  } catch(e){
+    return [];
+  }
+}
+function saveRecord(rec){
+  // 1. Guardado local
+  var current = getStoredRecords();
+  current.push(rec);
+  localStorage.setItem("brujula_records", JSON.stringify(current));
+
+  // 2. Envío a Google Sheets (Si se configuró la URL)
+  var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby8eLj0L4gkaa5wHcv6eJ72IppGkC2BsvXZuKbMH8ROuYhgD-UIFQ7QrFBzYWIffR4C/exec";
+  
+  if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.indexOf("script.google.com") !== -1) {
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(rec)
+    }).catch(function(err){ console.error("Error al enviar datos:", err); });
+  }
+}
+
+/* ===================== ESTADO ===================== */
+var answers = new Array(Q.length).fill(null);
+var cur = 0;
+var lastResult = null;
+var histPts = [];
+var currentDemographics = null;
+
+var $ = function(id){return document.getElementById(id);};
+function show(id){
+  ["screen-intro","screen-demo","screen-quiz","screen-result","screen-login","screen-dashboard"].forEach(function(s){$(s).classList.remove("active");});
+  $(id).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ===================== QUIZ ===================== */
+function renderQ(){
+  var q=Q[cur];
+  $("q-scene").textContent=q.emoji+" "+q.scene;
+  $("q-text").textContent=q.text;
+  $("pcount").textContent="Escena "+(cur+1)+" de "+Q.length;
+  $("pfill").style.width=((cur/Q.length)*100)+"%";
+  $("pbar").setAttribute("aria-valuenow",String(cur));
+  var box=$("q-opts"); box.innerHTML="";
+  OPTS.forEach(function(o,i){
+    var b=document.createElement("button");
+    b.className="opt"+(answers[cur]===o.v?" sel":"");
+    b.type="button";
+    b.innerHTML='<span class="k">'+(i+1)+'</span><span>'+o.t+'</span>';
+    b.addEventListener("click",function(){choose(o.v);});
+    box.appendChild(b);
+  });
+  $("btn-back").style.visibility=cur===0?"hidden":"visible";
+}
+function choose(v){
+  answers[cur]=v;
+  setTimeout(function(){
+    if(cur<Q.length-1){cur++;renderQ();}
+    else{finish();}
+  },180);
+}
+
+/* ===================== CÁLCULO ===================== */
+function compute(ans){
+  var s={x:0,y:0,z:0},contribs=[];
+  Q.forEach(function(q,i){
+    var v=ans[i]==null?0:ans[i];
+    var c=v*q.dir;
+    s[q.axis]+=c;
+    contribs.push({i:i,axis:q.axis,c:c,v:v});
+  });
+  return {x:s.x,y:s.y,z:s.z,contribs:contribs};
+}
+function quadrantOf(x,y){
+  if(Math.abs(x)<1.5&&Math.abs(y)<1.5)return "c";
+  if(y>=0)return x<0?"tl":"tr";
+  return x<0?"bl":"br";
+}
+function zKey(z){return z>=2?"pos":z<=-2?"neg":"c";}
+function intensity(x,y,z){
+  var d=Math.sqrt(x*x+y*y+z*z);
+  if(d<3)return "cerca del centro";
+  if(d<8)return "moderada";
+  return "marcada";
+}
+function axisLabel(axis,val){
+  if(axis==="x") return val===0?"equilibrio":(val<0?"más Estado":"más mercado");
+  if(axis==="y") return val===0?"equilibrio":(val>0?"más orden":"más libertades");
+  return val===0?"equilibrio":(val>0?"protección":"apertura");
+}
+function poleName(ax,c){
+  if(ax==="x")return c<0?"más Estado":"más mercado";
+  if(ax==="y")return c>0?"más orden":"más libertades";
+  return c>0?"protección":"apertura";
+}
+function answerWord(v){
+  return v===2?"totalmente de acuerdo":v===1?"de acuerdo":v===-1?"en desacuerdo":v===-2?"totalmente en desacuerdo":"depende";
+}
+function sgn(n){return (n>0?"+":"")+n;}
+
+/* ===================== RENDERIZADO VISUAL SVG ===================== */
+function compassSVG(opts){
+  var S=20,C=230,W=460;
+  function px(x){return C+x*S;} function py(y){return C-y*S;}
+  var s='<svg viewBox="0 0 '+W+' '+W+'" width="100%">';
+  s+='<rect x="30" y="30" width="200" height="200" fill="#d64545" opacity=".13"/>';
+  s+='<rect x="230" y="30" width="200" height="200" fill="#2f6fd6" opacity=".13"/>';
+  s+='<rect x="30" y="230" width="200" height="200" fill="#2e9e5b" opacity=".13"/>';
+  s+='<rect x="230" y="230" width="200" height="200" fill="#f2a900" opacity=".16"/>';
+  s+='<line x1="30" y1="230" x2="430" y2="230" stroke="#2b2230" stroke-width="2"/>';
+  s+='<line x1="230" y1="30" x2="230" y2="430" stroke="#2b2230" stroke-width="2"/>';
+  if(opts.user){
+    var ux=px(opts.user.x),uy=py(opts.user.y);
+    s+='<circle cx="'+ux+'" cy="'+uy+'" r="8" fill="#d6246e" stroke="#fff" stroke-width="2"/>';
+  }
+  return s+'</svg>';
+}
+
+function zbarSVG(opts){
+  var s='<svg viewBox="0 0 460 100" width="100%">';
+  s+='<rect x="30" y="40" width="400" height="14" rx="7" fill="#e9dff0"/>';
+  if(opts.user){
+    var ux=230+opts.user.z*20;
+    s+='<circle cx="'+ux+'" cy="47" r="8" fill="#d6246e"/>';
+  }
+  return s+'</svg>';
+}
+
+function cube3D(opts){ return '<div style="text-align:center;padding:20px;color:var(--muted)">Vista 3D activa</div>'; }
+
+/* ===================== RESULTADO ===================== */
+function finish(){
+  var r=compute(answers);
+  var x=r.x,y=r.y,z=r.z;
+  var qk=quadrantOf(x,y);
+  var Qd=QUADS[qk];
+  var zk=zKey(z);
+  var Zd=ZQ[zk];
+  lastResult={x:x,y:y,z:z,qk:qk,zk:zk};
+
+  // Guardado estructurado
+  var now = new Date();
+  var dateStr = now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,'0') + "-" + String(now.getDate()).padStart(2,'0') + " " + String(now.getHours()).padStart(2,'0') + ":" + String(now.getMinutes()).padStart(2,'0');
+  
+  var rec = {
+    fecha: dateStr,
+    autorizado: currentDemographics ? currentDemographics.autorizado : false,
+    alias: currentDemographics && currentDemographics.autorizado ? (currentDemographics.alias || "Anónimo") : "-",
+    genero: currentDemographics && currentDemographics.autorizado ? (currentDemographics.genero || "-") : "-",
+    sexo: currentDemographics && currentDemographics.autorizado ? (currentDemographics.sexo || "-") : "-",
+    edad: currentDemographics && currentDemographics.autorizado ? (currentDemographics.edad || "-") : "-",
+    estudios: currentDemographics && currentDemographics.autorizado ? (currentDemographics.estudios || "-") : "-",
+    alcaldia: currentDemographics && currentDemographics.autorizado ? (currentDemographics.alcaldia || "-") : "-",
+    espectroPropio: currentDemographics && currentDemographics.autorizado ? (currentDemographics.espectroPropio || "-") : "-",
+    espectroEntorno: currentDemographics && currentDemographics.autorizado ? (currentDemographics.espectroEntorno || "-") : "-",
+    resultado: Qd.name,
+    rawAnswers: answers.slice() // Guarda las respuestas individuales para las métricas
+  };
+  saveRecord(rec);
+
+  $("r-badge").style.background=Qd.color;
+  $("r-badge").textContent=Qd.tech;
+  $("r-title").textContent=Qd.name;
+  $("r-sub").textContent="Tercer eje: "+Zd.name;
+  $("r-coords").innerHTML='<span class="coord">Econ: <b>'+x+'</b></span> <span class="coord">Aut: <b>'+y+'</b></span> <span class="coord">Ext: <b>'+z+'</b></span>';
+  $("r-compass").innerHTML=compassSVG({user:{x:x,y:y}});
+  $("r-zbar").innerHTML=zbarSVG({user:{z:z}});
+
+  show("screen-result");
+}
+
+/* ===================== DASHBOARD & GRÁFICAS ===================== */
+function renderQuadrantStats(records){
+  var keys=["tl","tr","bl","br","c"];
+  var counts={tl:0,tr:0,bl:0,br:0,c:0};
+  var names={};
+  keys.forEach(function(k){names[QUADS[k].name]=k;});
+  records.forEach(function(rec){
+    var k=names[rec.resultado];
+    if(k) counts[k]++;
+  });
+
+  var total=records.length;
+  var colors={tl:"#d64545",tr:"#2f6fd6",bl:"#2e9e5b",br:"#c98a00",c:"#5b3b8c"};
+  var chart=$("dash-quadrant-chart");
+  var list=$("dash-quadrant-list");
+
+  if(total===0){
+    chart.innerHTML='<div class="dash-chart-empty">No hay registros acumulados.</div>';
+    list.innerHTML='<li style="color:var(--muted)">Sin datos.</li>';
+    return;
+  }
+
+  var sorted=keys.map(function(k){
+    return {key:k,name:QUADS[k].name,count:counts[k],color:colors[k]};
+  }).sort(function(a,b){return b.count-a.count;});
+
+  var svg='<svg viewBox="0 0 500 350" role="img" aria-label="Distribución de cuadrantes">';
+  svg+='<rect x="50" y="20" width="400" height="300" fill="#fff" stroke="#eadfce"/>';
+  svg+='<line x1="250" y1="20" x2="250" y2="320" stroke="#2b2230" stroke-width="2"/>';
+  svg+='<line x1="50" y1="170" x2="450" y2="170" stroke="#2b2230" stroke-width="2"/>';
+  
+  var positions={
+    tl:{x:150,y:95}, tr:{x:350,y:95},
+    bl:{x:150,y:245}, br:{x:350,y:245}
+  };
+
+  ["tl","tr","bl","br"].forEach(function(k){
+    var pos=positions[k], c=counts[k], pct=Math.round(c/total*100);
+    svg+='<circle cx="'+pos.x+'" cy="'+pos.y+'" r="'+Math.max(12, (c/total)*45)+'" fill="'+colors[k]+'" opacity=".8"/>';
+    svg+='<text x="'+pos.x+'" y="'+(pos.y+5)+'" text-anchor="middle" fill="#fff" font-weight="700" font-size="14">'+c+'</text>';
+  });
+
+  svg+='</svg>';
+  chart.innerHTML=svg;
+
+  list.innerHTML=sorted.map(function(item){
+    var pct=Math.round(item.count/total*100);
+    return '<li><div class="quadrant-rank-head"><strong>'+item.name+'</strong><span>'+item.count+' ('+pct+'%)</span></div><div class="quadrant-track"><span style="width:'+pct+'%;background:'+item.color+'"></span></div></li>';
+  }).join("");
+}
+
+function renderQuestionsBreakdown(records){
+  var container = $("dash-questions-breakdown");
+  container.innerHTML = "";
+  if(records.length === 0){
+    container.innerHTML = "<p style='color:var(--muted);grid-column:1/-1;'>Aún no hay respuestas acumuladas para desglosar por pregunta.</p>";
+    return;
+  }
+
+  Q.forEach(function(q, qIdx){
+    var counts = {"2":0, "1":0, "0":0, "-1":0, "-2":0};
+    var totalAns = 0;
+
+    records.forEach(function(rec){
+      if(rec.rawAnswers && rec.rawAnswers[qIdx] !== undefined){
+        var val = String(rec.rawAnswers[qIdx]);
+        if(counts[val] !== undefined){
+          counts[val]++;
+          totalAns++;
+        }
+      }
+    });
+
+    var card = document.createElement("div");
+    card.className = "q-card";
+    
+    var html = '<h5>' + (qIdx+1) + '. ' + q.scene + '</h5>';
+    html += '<p>' + q.text + '</p>';
+    html += '<div class="q-bars">';
+
+    OPTS.forEach(function(opt){
+      var c = counts[String(opt.v)] || 0;
+      var pct = totalAns > 0 ? Math.round((c / totalAns) * 100) : 0;
+      html += '<div class="q-bar-row">';
+      html += '<span class="q-bar-label">' + opt.t + '</span>';
+      html += '<div class="q-bar-track"><div class="q-bar-fill" style="width:' + pct + '%;"></div></div>';
+      html += '<span class="q-bar-val">' + pct + '%</span>';
+      html += '</div>';
+    });
+
+    html += '</div>';
+    card.innerHTML = html;
+    container.appendChild(card);
+  });
+}
+
+function renderDashboard(){
+  var records = getStoredRecords();
+  $("dash-total-resp").textContent = records.length;
+  
+  renderQuadrantStats(records);
+  renderQuestionsBreakdown(records);
+
+  var autorizados = records.filter(function(r){ return r.autorizado; });
+  var pct = records.length > 0 ? Math.round((autorizados.length / records.length) * 100) : 0;
+  $("dash-pct-autorizados").textContent = pct + "%";
+
+  var alcCounts = {};
+  autorizados.forEach(function(r){
+    if(r.alcaldia && r.alcaldia !== "-"){ alcCounts[r.alcaldia] = (alcCounts[r.alcaldia] || 0) + 1; }
+  });
+  var topAlc = "-", maxAlc = 0;
+  for(var a in alcCounts){ if(alcCounts[a] > maxAlc){ maxAlc = alcCounts[a]; topAlc = a; } }
+  $("dash-top-alcaldia").textContent = topAlc;
+
+  var espCounts = {};
+  autorizados.forEach(function(r){
+    if(r.espectroPropio && r.espectroPropio !== "-"){ espCounts[r.espectroPropio] = (espCounts[r.espectroPropio] || 0) + 1; }
+  });
+  var topEsp = "-", maxEsp = 0;
+  for(var e in espCounts){ if(espCounts[e] > maxEsp){ maxEsp = espCounts[e]; topEsp = e; } }
+  $("dash-top-espectro").textContent = topEsp;
+
+  var tbody = $("dash-table-body");
+  tbody.innerHTML = "";
+  records.slice().reverse().forEach(function(r){
+    var tr = document.createElement("tr");
+    tr.innerHTML = '<td>' + r.fecha + '</td>' +
+                   '<td>' + r.alias + '</td>' +
+                   '<td>' + r.genero + ' / ' + r.sexo + '</td>' +
+                   '<td>' + r.edad + '</td>' +
+                   '<td>' + r.estudios + '</td>' +
+                   '<td>' + r.alcaldia + '</td>' +
+                   '<td>' + r.espectroPropio + '</td>' +
+                   '<td>' + r.espectroEntorno + '</td>' +
+                   '<td><b>' + r.resultado + '</b></td>';
+    tbody.appendChild(tr);
+  });
+}
+
+/* ===================== EVENTOS ===================== */
+function reset(){cur=0;answers=new Array(Q.length).fill(null);}
+
+$("btn-to-demo").addEventListener("click", function(){
+  $("demo-consent").checked = false;
+  $("demo-fields").style.opacity = "0.5";
+  $("demo-fields").style.pointerEvents = "none";
+  show("screen-demo");
+});
+
+$("demo-consent").addEventListener("change", function(){
+  var on = this.checked;
+  $("demo-fields").style.opacity = on ? "1" : "0.5";
+  $("demo-fields").style.pointerEvents = on ? "auto" : "none";
+});
+
+$("btn-start-quiz").addEventListener("click", function(){
+  var autorizado = $("demo-consent").checked;
+  currentDemographics = {
+    autorizado: autorizado,
+    alias: $("f-alias").value.trim(),
+    genero: $("f-genero").value,
+    sexo: $("f-sexo").value,
+    edad: $("f-edad").value,
+    estudios: $("f-estudios").value,
+    alcaldia: $("f-alcaldia").value,
+    espectroPropio: $("f-espectro-propio").value,
+    espectroEntorno: $("f-espectro-entorno").value
+  };
+  reset();
+  renderQ();
+  show("screen-quiz");
+});
+
+$("btn-skip-demo").addEventListener("click", function(){
+  currentDemographics = { autorizado: false };
+  reset();
+  renderQ();
+  show("screen-quiz");
+});
+
+$("btn-back").addEventListener("click",function(){if(cur>0){cur--;renderQ();}});
+$("btn-restart").addEventListener("click",function(){reset();show("screen-intro");});
+
+$("btn-to-login").addEventListener("click", function(){ show("screen-login"); });
+$("btn-login-cancel").addEventListener("click", function(){ show("screen-intro"); });
+
+$("form-login").addEventListener("submit", function(e){
+  e.preventDefault();
+  if($("admin-user").value.trim() === "Roberto GM" && $("admin-pass").value.trim() === "5429"){
+    renderDashboard();
+    show("screen-dashboard");
+  } else {
+    $("login-error").style.display = "block";
+  }
+});
+
+$("btn-logout").addEventListener("click", function(){ show("screen-intro"); });
+$("btn-dash-back").addEventListener("click", function(){ show("screen-intro"); });
+
+$("btn-clear-data").addEventListener("click", function(){
+  if(confirm("¿Deseas reiniciar las métricas locales? Esta acción dejará los contadores en cero.")){
+    localStorage.setItem("brujula_records", JSON.stringify([]));
+    renderDashboard();
+  }
+});
+
+initDataStorage();
+})();
+</script>
+</body>
+</html>
